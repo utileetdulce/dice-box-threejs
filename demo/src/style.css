@@ -1,0 +1,7 @@
+body { margin: 0; font-family: system-ui, sans-serif; background: #1b1b1b; color: #eee; }
+.app { display: flex; flex-direction: column; height: 100vh; }
+.controls { display: flex; gap: .5rem; padding: .5rem; align-items: center; }
+.controls input { padding: .4rem; }
+.controls button { padding: .4rem .8rem; cursor: pointer; }
+.dice-container { flex: 1; position: relative; background: #2d5a3d; }
+.dice-container canvas { position: absolute; inset: 0; }

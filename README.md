@@ -70,3 +70,6 @@ Box.roll("6d6@4,4,4,4,4,4") // rolls six dice that will land on 4's
 
 ## Notes
 In order to use textures or sounds, you will need to manually copy the assets out of the `./public` folder and into your static assets folder where you're building your app.
+
+## React demo
+`npm install && npm run dev` starts a React demo (`./demo`) using the `useDiceBox` hook, which mounts the dice box into a container element and cleans up on unmount (StrictMode-safe).
