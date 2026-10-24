@@ -35,6 +35,11 @@
     "public"
   ],
   "main": "./dist/dice-box-threejs.es.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./colorsets": "./src/const/colorsets.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -46,6 +51,6 @@
   },
   "dependencies": {
     "cannon-es": "^0.20.0",
-    "three": "^0.143.0"
+    "three": "^0.170.0"
   }
 }

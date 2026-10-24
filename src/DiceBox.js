@@ -38,7 +38,10 @@ class DiceBox {
 	constructor(element_container, options = {}) {
 		//private variables
 		this.initialized = false
-		this.container = document.querySelector(element_container);
+		// accepts a CSS selector, a DOM element or a ref-like object ({ current: element })
+		this.container = typeof element_container === "string"
+			? document.querySelector(element_container)
+			: element_container?.current ?? element_container
 		this.dimensions = new THREE.Vector2(this.container.clientWidth, this.container.clientHeight)
 		this.adaptive_timestep = false;
 		this.last_time = 0;
@@ -625,12 +628,12 @@ class DiceBox {
 	}
 
 	//spawns one dicemesh object from a single vectordata object
-	spawnDice(vectordata, reset = false) {
+	spawnDice(vectordata, reset = false, colorData = this.colorData) {
 		const {pos, axis, angle, velocity} = vectordata
 		let dicemesh
 		
 		if(!reset) {
-			dicemesh = this.DiceFactory.create(vectordata.type, this.colorData);
+			dicemesh = this.DiceFactory.create(vectordata.type, colorData);
 			if(!dicemesh) return;
 			dicemesh.notation = vectordata;
 			dicemesh.result = [];
@@ -963,7 +966,7 @@ class DiceBox {
 		return result
 	}
 
-	async roll(notationSting){
+	async roll(notationSting, colorData){
 		this.notationVectors = this.startClickThrow(notationSting)
 		if(this.notationVectors){
 			// const DL = this.diceList
@@ -980,7 +983,7 @@ class DiceBox {
 					document.dispatchEvent(event)
 	
 					resolve(results)
-				})
+				}, colorData)
 			})
 		}
 	}
@@ -1013,15 +1016,15 @@ class DiceBox {
 		})
 	}
 
-	async add(notationSting){
+	async add(notationSting, colorData = this.colorData){
 		let dieCount = this.diceList.length
-		if(!dieCount) return this.roll(notationSting)
+		if(!dieCount) return this.roll(notationSting, colorData)
 
 		let addNotationVectors = this.startClickThrow(notationSting)
 		let diceIdArray = []
 
 		for (let i=0, len=addNotationVectors.vectors.length; i < len; ++i) {
-			this.spawnDice(addNotationVectors.vectors[i]);
+			this.spawnDice(addNotationVectors.vectors[i], false, colorData);
 		}
 
 		this.simulateThrow();
@@ -1102,7 +1105,7 @@ class DiceBox {
 		})
 	}
 
-	rollDice(callback){
+	rollDice(callback, colorData = this.colorData){
 
 		if (this.notationVectors.error) {
 			callback.call(this);
@@ -1113,7 +1116,7 @@ class DiceBox {
 		this.clearDice();
 
 		for (let i=0, len=this.notationVectors.vectors.length; i < len; ++i) {
-			this.spawnDice(this.notationVectors.vectors[i]);
+			this.spawnDice(this.notationVectors.vectors[i], false, colorData);
 		}
 		this.simulateThrow();
 		this.steps = 0;

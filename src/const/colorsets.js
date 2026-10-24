@@ -309,6 +309,33 @@ export const COLORSETS = {
 	},
 	
 	
+	'blue': {
+		name: 'Blue',
+		category: 'Colors',
+		foreground: '#000',
+		background: '#BBF',
+		outline: '#88F',
+		texture: 'none',
+		description: 'Blue'
+	},
+	'red': {
+		name: 'Red',
+		category: 'Colors',
+		foreground: '#000',
+		background: '#F88',
+		outline: '#F44',
+		texture: 'none',
+		description: 'Red'
+	},
+	'green': {
+		name: 'Green',
+		category: 'Colors',
+		foreground: '#000',
+		background: '#8F8',
+		outline: '#4F4',
+		texture: 'none',
+		description: 'Green'
+	},
 	'swrpg_abi': {
 		name: 'Star Wars RPG - Ability',
 		category: 'Star Wars™ RPG',

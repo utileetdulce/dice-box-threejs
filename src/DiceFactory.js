@@ -51,7 +51,8 @@ class DiceFactory {
 	}
 
 	// returns a dicemesh (THREE.Mesh) object
-	create(type) {
+	create(type, colorData) {
+		if (colorData) this.applyColorSet(colorData)
 		let diceobj = this.get(type);
 		if (!diceobj) return null;
 
