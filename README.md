@@ -73,3 +73,13 @@ In order to use textures or sounds, you will need to manually copy the assets ou
 
 ## React demo
 `npm install && npm run dev` starts a React demo (`./demo`) using the `useDiceBox` hook, which mounts the dice box into a container element and cleans up on unmount (StrictMode-safe).
+
+### Hooks
+```
+import { useDiceBox } from "@3d-dice/dice-box-threejs/src/react"
+
+const { containerRef, roll, reroll, add, remove, clear, updateConfig, results, ready, rolling } =
+  useDiceBox({ assetPath: "/" })
+return <div ref={containerRef} style={{ height: 400 }} />
+```
+`useRollComplete(cb)` returns the latest results from the global `rollComplete` event.
